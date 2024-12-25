@@ -1,0 +1,46 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+    encoding:
+      charset: utf-8
+      enabled: true
+    
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+      
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://localhost:3307/photogram?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false
+    username: star4381
+    password: 1234
+    
+  jpa:
+    open-in-view: true # true로 하면 세션이 View에서 세션이 종료된다. false로 할 경우 Service가 끝나면 세션이 바로 종료된다.
+    hibernate:
+      ddl-auto: update # 실제 프로덕션 모드에서는 변경이 안 되도록 none으로 변경해준다.
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: true
+    
+  servlet:
+    multipart:
+      enabled: true # multipart 파일(이미지)를 받는다.
+      max-file-size: 2MB # 파일 제한 2MB
+
+  security:
+    user:
+      name: test
+      password: 1234   
+    oauth2:      client:        registration:
+          facebook:
+            client-id: 1044047430029502
+            client-secret: 84678ebf85b250032dd0d4961e77c4f0
+            scope:            - public_profile
+            - email          
+
+file:
+  path: C:/workspace/springbootwork/upload/
